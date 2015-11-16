@@ -10,3 +10,7 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 
 
 Once the gulp start run, you can access it on a browser by going to the web page [http://localhost:3010](http://localhost:3010)
+
+
+##Check JShint
+`gulp lint`

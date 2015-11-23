@@ -19,7 +19,6 @@
     <!-- Page style -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/responsive.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,14 +30,35 @@
 </head>
 <body class="maarkup home">
 <header id="header">
-    <div class="container-fluid row-one">
-        <div class="col-md-2 comp-logo">
-            <a href="index.html"><img src="images/logo.png" alt="maarkup.com"/></a>
-        </div>
-        <div class="col-md-10 header-links">
-            right
-        </div>
+    <div class="container row-one">
+        <div class="comp-logo">
+            <a href="http://www.maarkup.com/" target="_blank"><img src="images/logo.png" alt="maarkup.com"/></a>
+            <p>&nbsp;</p>
+            <h1>App Template</h1>
+            <p>HTML template including <a href="http://getbootstrap.com/"><strong>bootstrap</strong></a>, <a
+                    href="http://sass-lang.com/guide"><strong>sass</strong></a>, <a href="http://gulpjs.com/"><strong>gulp</strong></a> tasks with <a
+                    href="http://www.browsersync.io/"><strong>browsersync</strong></a>. Which helps you to auto refresh your browser after every change</p>
 
+            <h2>How to Install</h2>
+            <p><code>npm install</code></p>
+
+
+            <h2>How to Start app</h2>
+            <p><code>gulp start</code></p>
+
+            <p>Once the gulp start run, you can access it on a browser by going to the web page <a
+                    href="http://localhost:3010"><strong>http://localhost:3010</strong></a></p>
+            <p><code>Gulp Start</code> will take care of <code>sass to css</code> convertion with compressed version and auto refresh the browser on every change in html and css file.</p>
+
+
+            <h2>JShint</h2>
+            <p><code>gulp lint</code></p>
+
+            <h2>JS Comprss</h2>
+            <p><code>gulp compressjs</code></p>
+            <p>it will create <code>*.min.js</code> file in the same directory</p>
+
+        </div>
     </div>
 </header>
 <script src="js/vendor/jquery-1.11.3.min.js"></script>

@@ -1,4 +1,4 @@
-# App Sample Template
+# App Template
 HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sass-lang.com/guide), [gulp](http://gulpjs.com/) tasks with [browsersync](http://www.browsersync.io/). Which helps you to auto refresh your browser after every change
 
 ##Install

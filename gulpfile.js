@@ -1,12 +1,14 @@
 'use strict';
 
-var gulp = require('gulp');
-var Log = require('log');
-var logger = new Log('info');
-var sass = require('gulp-ruby-sass');
-var jscs = require('gulp-jscs');
-var jshint = require('gulp-jshint');
-var browserSync = require('browser-sync').create();
+var gulp = require('gulp'),
+    Log = require('log'),
+    logger = new Log('info'),
+    sass = require('gulp-ruby-sass'),
+    jscs = require('gulp-jscs'),
+    jshint = require('gulp-jshint'),
+    uglify = require('gulp-uglify'),
+    browserSync = require('browser-sync').create(),
+    rename = require("gulp-rename");
 
 // Static server
 gulp.task('startServer', function () {
@@ -30,12 +32,21 @@ gulp.task('sass', function () {
         .pipe(browserSync.stream());
 });
 
-gulp.task('lint', function() {
+gulp.task('lint', function () {
     return gulp.src([
         'app/js/*.js'
     ]).pipe(jscs())
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
+});
+
+gulp.task('compressjs', function () {
+    gulp.src('app/js/*.js')
+        .pipe(uglify())
+        .pipe(rename({
+            extname: '.min.js'
+        }))
+        .pipe(gulp.dest('app/js'));
 });
 
 gulp.task('start', ['startServer']);

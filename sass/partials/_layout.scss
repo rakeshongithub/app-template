@@ -8,4 +8,12 @@ body {
 .comp-logo{
   text-align: center;
   padding-top: 30px;
+  border-radius: 10px;
+}
+
+a{
+  transition: all 0.25s ease-in-out;
+  &:hover{
+    text-decoration: none;
+  }
 }

@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     browserSync = require('browser-sync').create(),
-    rename = require("gulp-rename");
+    rename = require("gulp-rename"),
+    autoprefixer = require('gulp-autoprefixer');
 
 // Static server
 gulp.task('startServer', function () {
@@ -28,6 +29,10 @@ gulp.task('startServer', function () {
 gulp.task('sass', function () {
     return sass('sass/**/*.scss', {style: 'compressed'})
         .on('error', sass.logError)
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions', "> 1%", "ie 8", "ie 7"],
+            cascade: false
+        }))
         .pipe(gulp.dest('app/css'))
         .pipe(browserSync.stream());
 });

@@ -20,4 +20,4 @@ Once the gulp start run, you can access it on a browser by going to the web page
 ##Gulp Build
 `gulp build`
 
-It will move build files into `.temp/build` folder. You can run build files with `gulp start-build`. You can use `gulp clean` to clean `.tmp` folder for fresh build.
+It will move build files into `.tmp/build` folder. You can run build files with `gulp start-build`. You can use `gulp clean` to clean `.tmp` folder for fresh build.

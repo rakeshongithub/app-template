@@ -11,17 +11,39 @@ var gulp = require('gulp'),
     minifyCss = require('gulp-minify-css'),
     browserSync = require('browser-sync').create(),
     rename = require("gulp-rename"),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    clean = require('gulp-clean');
 
-// Static server
-gulp.task('startServer', function () {
+var filesToMove = [
+    'app/js/**/*.*',
+    'app/css/**/*.*',
+    'app/fonts/**/*.*',
+    'app/images/**/*.*',
+    'app/*.html'
+];
 
-    logger.info('Welcome to Maarkup.com');
+gulp.task('start-build', function (cb) {
+    logger.info('----> APPLICATION NOW RUNING FROM BUILD FOLDER <----');
+    browserSync.init({
+        port: 8000,
+        server: {
+            baseDir: './.tmp/build/app',
+            index: 'index.html'
+        }
+    }, cb)
+});
+
+gulp.task('server', function (cb) {
+
+    logger.info('----> SERVER STARTED AND RUNING...');
 
     browserSync.init({
-        server: "./app",
-        port: 3010
-    });
+        port: 3010,
+        server: {
+            baseDir: './app',
+            index: 'index.html'
+        }
+    }, cb);
 
     gulp.watch('sass/**/*.scss', ['sass']).on('change', function (event) {
         browserSync.reload();
@@ -56,13 +78,24 @@ gulp.task('lint', function () {
         .pipe(notify('-- JSHINT Run Successfully. File Checked: "<%= file.relative %>"'));
 });
 
+gulp.task('clean', function () {
+    return gulp.src('./.tmp', {read: false})
+        .pipe(clean());
+});
+
+
+gulp.task('move', ['clean'], function(){
+    gulp.src(filesToMove, { base: './' })
+        .pipe(gulp.dest('./.tmp/build'));
+});
+
 gulp.task('compressjs', function () {
     gulp.src('app/js/*.js')
         .pipe(uglify())
         .pipe(rename({
             extname: '.min.js'
         }))
-        .pipe(gulp.dest('app/js'))
+        .pipe(gulp.dest('./.tmp/build/app/js'))
         .pipe(notify({message: '-- SUCCESSFULLY Compressed JS files. Output file - "<%= file.relative %>"'}));
 });
 
@@ -72,9 +105,9 @@ gulp.task('minifycss', function () {
         .pipe(rename({
             extname: '.min.css'
         }))
-        .pipe(gulp.dest('app/css'))
+        .pipe(gulp.dest('./.tmp/build/app/css'))
         .pipe(notify('-- SUCCESSFULLY Minified CSS Files. Output file - "<%= file.relative %>".'));
 });
 
-gulp.task('compress', ['compressjs', 'minifycss']);
-gulp.task('start', ['startServer']);
+gulp.task('build', ['compressjs', 'minifycss', 'move']);
+gulp.task('start', ['server']);

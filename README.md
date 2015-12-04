@@ -17,12 +17,6 @@ Once the gulp start run, you can access it on a browser by going to the web page
 `gulp lint`
 
 
-##Compress CSS/JS
-`gulp compress`
-
-it will create `*.min` file in the same directory
-
-
 ##Gulp Build
 `gulp build`
 

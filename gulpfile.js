@@ -41,7 +41,7 @@ var paths = {
 
 // RUN PRODUCTION APPLICATION
 gulp.task('start-build-server', function (cb) {
-    logger.info('----> PRODUCTION APPLICATION NOW RUNING FROM BUILD FOLDER <----');
+    logger.info('----> PRODUCTION APPLICATION RUNING FROM BUILD FOLDER <----');
     browserSync.init({
         port: 3011,
         server: {
@@ -66,14 +66,13 @@ gulp.task('imagemin', function () {
             progressive: true,
             interlaced: true
         }))
-        .pipe(gulp.dest(paths.build.images));
+        .pipe(gulp.dest(paths.build.images))
+        .pipe(notify('---> IMAGES MINIMISED SUCCESSFULLY <---'));
 });
 
 // START SERVER FOR DEVELOPMENT
 gulp.task('server', function (cb) {
-
-    logger.info('----> SERVER STARTED AND RUNING...');
-
+    logger.info('----> LOCAL SERVER STARTED AND RUNING...');
     browserSync.init({
         port: 3010,
         server: {

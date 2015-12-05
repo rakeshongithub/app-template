@@ -15,8 +15,8 @@ Once the gulp start run, you can access it on a browser by going to the web page
 ##Gulp Commands
 `gulp start-dev` - run application locally.
 
-`gulp clean` - run before `gulp build-prod` to clean build folder.
+`gulp clean` - run `gulp build-prod` to clean build folder.
 
-`gulp build-prod` - create production ready code. It will move files into `.tmp/build`.
+`gulp build` - create production ready code. It will move files into `.tmp/build`.
 
 `gulp start-build` - run application with production ready code.

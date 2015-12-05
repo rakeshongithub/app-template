@@ -52,14 +52,14 @@ gulp.task('start-build-server', function (cb) {
 });
 
 // MOVE FONTS
-gulp.task('fonts', function () {
+gulp.task('fonts', ['clean'], function () {
     gulp.src(paths.src.fonts, {base: './'})
         .pipe(gulp.dest(paths.build.src))
         .pipe(notify('---> FONTS MOVED SUCCESSFULLY TO BUILD'));
 });
 
 // Minify Images
-gulp.task('imagemin', function () {
+gulp.task('imagemin', ['clean'], function () {
     return gulp.src(paths.src.images)
         .pipe(imagemin({
             optimizationLevel: 5,
@@ -93,7 +93,7 @@ gulp.task('server', function (cb) {
 });
 
 // SASS COMPILER
-gulp.task('sass', function () {
+gulp.task('sass', ['clean'], function () {
     return sass(paths.src.scss, {style: 'expanded'})
         .on('error', sass.logError)
         .pipe(autoprefixer({
@@ -122,7 +122,7 @@ gulp.task('clean', function (cb) {
 });
 
 // USEMIN: CONCAT & MINIFY JS, CSS AND ADD REVISION TO AVOID CACHE
-gulp.task('mergeAndMinify', function () {
+gulp.task('mergeAndMinify', ['clean'], function () {
     logger.info('---> UPDATE *.HTML APP ROOT' || 'BLANK');
     return gulp.src(paths.src.html)
         .pipe(usemin({
@@ -145,7 +145,7 @@ gulp.task('mergeAndMinify', function () {
 gulp.task('start-dev', ['server']);
 
 // Production tasks
-gulp.task('build-prod', ['mergeAndMinify', 'fonts', 'imagemin']);
+gulp.task('build', ['clean', 'mergeAndMinify', 'fonts', 'imagemin']);
 
 // Start Production app
 gulp.task('start-prod', ['start-build-server']);

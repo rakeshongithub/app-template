@@ -17,8 +17,12 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     <!-- Page style -->
+    <!-- build:cssVendor css/vendor/vendor.css -->
     <link rel="stylesheet" href="css/vendor/bootstrap.min.css"/>
+    <!-- endbuild -->
+    <!-- build:cssApp css/style.min.css -->
     <link rel="stylesheet" href="css/style.css"/>
+    <!-- endbuild -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,26 +47,30 @@
             <p><code>npm install</code></p>
 
 
-            <h2>How to Start app</h2>
-            <p><code>gulp start</code></p>
-
-            <p>Once the gulp start run, you can access it on a browser by going to the web page <a
-                    href="http://localhost:3010"><strong>http://localhost:3010</strong></a></p>
-            <p><code>Gulp Start</code> will take care of <code>sass to css</code> conversion and auto refresh the browser on every change in html and css file.</p>
+            <h2>Start App Locally</h2>
+            <p><code>gulp start-dev</code> Once the gulp start run, you can access it on a browser by going to the web page <a href="http://localhost:3010">http://localhost:3010</a></p>
+            <p><code>gulp start-dev</code> will take care of <code>sass to css</code> conversion and auto refresh the browser on every change in html and css file.</p>
 
 
-            <h2>JShint</h2>
-            <p><code>gulp lint</code></p>
-
-            <h2>Compress CSS/JS</h2>
-            <p><code>gulp compress</code></p>
-            <p>it will create <code>*.min</code> file in the same directory</p>
+            <h2>Gulp Commands</h2>
+            <p><code>gulp start-dev</code> - run application locally.</p>
+            <p></p>
+            <p><code>gulp clean</code> - run before <code>gulp build-prod</code> to clean build folder.</p>
+            <p></p>
+            <p><code>gulp build-prod</code> - create production ready code. It will move files into <code>.tmp/build</code>.</p>
+            <p></p>
+            <p><code>gulp start-build</code> - run application with production ready code.</p>
 
         </div>
     </div>
 </header>
+
+<!-- build:jsVendor js/vendor/vendor.js -->
 <script src="js/vendor/jquery-1.11.3.min.js"></script>
 <script defer src="js/vendor/bootstrap.min.js"></script>
+<!-- endbuild -->
+<!-- build:jsApp js/custom.min.js -->
 <script src="js/custom.js"></script>
+<!-- endbuild -->
 </body>
 </html>

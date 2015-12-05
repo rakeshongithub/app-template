@@ -5,19 +5,18 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 `npm install`
 
 
-##Start app
-`gulp start`
+##Start App Locally
+`gulp start-dev`
 
 Once the gulp start run, you can access it on a browser by going to the web page [http://localhost:3010](http://localhost:3010)
-
-`Gulp Start` will take care of `sass to css` conversion and auto refresh the browser on every change in html and css file.
-
-
-##Check JShint
-`gulp lint`
+`gulp start-dev` will take care of `sass to css` conversion and auto refresh the browser on every change in html and css file.
 
 
-##Gulp Build
-`gulp build`
+##Gulp Commands
+`gulp start-dev` - run application locally.
 
-It will move build files into `.tmp/build` folder. You can run build files with `gulp start-build`. You can use `gulp clean` to clean `.tmp` folder for fresh build.
+`gulp clean` - run before `gulp build-prod` to clean build folder.
+
+`gulp build-prod` - create production ready code. It will move files into `.tmp/build`.
+
+`gulp start-build` - run application with production ready code.

@@ -4,7 +4,11 @@
   "description": "My Portfolio",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "gulp start-dev",
+    "startdev": "gulp start-dev",
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "startprod": "gulp start-prod"
   },
   "author": "Rakesh",
   "license": "ISC",

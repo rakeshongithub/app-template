@@ -29,7 +29,7 @@ Write your CSS rules without vendor prefixes (in fact, forget about them entirel
 
 Autoprefixer will use the data based on current browser popularity and property support to apply prefixes for you. You can try the [interactive demo](http://autoprefixer.github.io/) of Autoprefixer.
 
-###Input CSS
+####Input CSS
 
 ```sh
 :fullscreen a {
@@ -37,7 +37,7 @@ Autoprefixer will use the data based on current browser popularity and property 
 }
 ```
 
-###Output by Autoprefixer CSS
+####Output by Autoprefixer CSS
 
 ```sh
 :-webkit-full-screen a {

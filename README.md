@@ -31,15 +31,15 @@ Autoprefixer will use the data based on current browser popularity and property 
 
 ###Input CSS
 
-`
+```sh
 :fullscreen a {
     display: flex
 }
-`
+```
 
 ###Output by Autoprefixer CSS
 
-`
+```sh
 :-webkit-full-screen a {
     display: -webkit-box;
     display: -webkit-flex;
@@ -58,4 +58,4 @@ Autoprefixer will use the data based on current browser popularity and property 
     display: -ms-flexbox;
     display: flex
 }
-`
+```

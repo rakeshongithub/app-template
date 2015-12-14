@@ -37,7 +37,7 @@ Autoprefixer will use the data based on current browser popularity and property 
 }
 ```
 
-####Output by Autoprefixer CSS
+####Output by Autoprefixer
 
 ```sh
 :-webkit-full-screen a {

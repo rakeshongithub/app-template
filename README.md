@@ -21,3 +21,41 @@ Once the gulp start run, you can access it on a browser by going to the web page
 `npm run build` - create production ready code. It will move files into `.tmp/build`.
 
 `npm run startprod` - run application with production ready code.
+
+
+##Used Gulp Autoprefixer
+
+Write your CSS rules without vendor prefixes (in fact, forget about them entirely):
+
+Autoprefixer will use the data based on current browser popularity and property support to apply prefixes for you. You can try the [interactive demo](http://autoprefixer.github.io/) of Autoprefixer.
+
+###Input CSS
+
+`
+:fullscreen a {
+    display: flex
+}
+`
+
+###Output by Autoprefixer CSS
+
+`
+:-webkit-full-screen a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex
+}
+:-moz-full-screen a {
+    display: flex
+}
+:-ms-fullscreen a {
+    display: -ms-flexbox;
+    display: flex
+}
+:fullscreen a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+`

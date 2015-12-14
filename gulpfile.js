@@ -97,7 +97,7 @@ gulp.task('sass', ['clean'], function () {
     return sass(paths.src.scss, {style: 'expanded'})
         .on('error', sass.logError)
         .pipe(autoprefixer({
-            browsers: ['last 2 versions', "> 1%", "ie 8", "ie 7"],
+            browsers: ['last 2 versions', "> 1%", "ie 9", "ie 8"],
             cascade: false
         }))
         .pipe(gulp.dest(paths.src.css))
@@ -116,7 +116,7 @@ gulp.task('lint', function () {
 
 // CLEAN BUILD FOLDER
 gulp.task('clean', function (cb) {
-    logger.info('---> CLEANED BUILD FOLDER ".TEMP" SUCCESSFULLY PRODUCTION CODE -:) <---');
+    logger.info('---> CLEANED BUILD FOLDER ".TEMP" SUCCESSFULLY -:) <---');
     return gulp.src('./.tmp/', {read: false})
         .pipe(clean(cb));
 });

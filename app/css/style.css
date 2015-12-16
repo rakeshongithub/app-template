@@ -10,11 +10,15 @@ body {
 .comp-logo {
   text-align: center;
   padding-top: 30px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
   border-radius: 10px;
 }
 
 a {
   -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
 a:hover {

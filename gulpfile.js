@@ -15,7 +15,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     browserSync = require('browser-sync').create(),
     rev = require('gulp-rev'),
-    autoprefixer = require('gulp-autoprefixer'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer-core'),
     clean = require('gulp-clean');
 
 
@@ -96,10 +97,14 @@ gulp.task('server', function (cb) {
 gulp.task('sass', ['clean'], function () {
     return sass(paths.src.scss, {style: 'expanded'})
         .on('error', sass.logError)
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions', "> 1%", "ie 9", "ie 8"],
-            cascade: false
-        }))
+        .pipe(postcss(
+            [
+                autoprefixer({
+                    browsers: ['> 0%', 'last 2 versions'],
+                    cascade: false
+                })
+            ]
+        ))
         .pipe(gulp.dest(paths.src.css))
         .pipe(browserSync.stream())
         .pipe(notify('---> Complied SCSS Successfully. Output File: "' + paths.src.css + '/<%= file.relative %>"'))

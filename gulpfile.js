@@ -83,7 +83,7 @@ gulp.task('server', function (cb) {
     }, cb);
 
     gulp.watch(paths.src.scss, ['sass']).on('change', function (event) {
-        browserSync.reload();
+        browserSync.reload({stream: true});
         logger.info('---> File "' + event.path + '" was ' + event.type + ', running tasks...');
     });
     gulp.watch(paths.src.html).on('change', function (event) {

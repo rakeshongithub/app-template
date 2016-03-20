@@ -3,6 +3,7 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 
 ##Install
 `npm install`
+
 `npm install -g gulp`
 
 ##How to install SASS

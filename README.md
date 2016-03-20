@@ -3,6 +3,12 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 
 ##Install
 `npm install`
+`npm install -g gulp`
+
+##How to install SASS
+####Only for windows user mac user already have Ruby pre-installed
+- [Install Ruby installer](http://rubyinstaller.org/)
+- `gem install sass`
 
 
 ##Start App Locally

@@ -4,153 +4,24 @@
 var gulp = require('gulp'),
     Log = require('log'),
     logger = new Log('info'),
-    notify = require("gulp-notify"),
-    sass = require('gulp-ruby-sass'),
-    jscs = require('gulp-jscs'),
-    jshint = require('gulp-jshint'),
-    usemin = require('gulp-usemin'),
-    minifyHtml = require('gulp-minify-html'),
-    uglify = require('gulp-uglify'),
-    minifyCss = require('gulp-minify-css'),
-    imagemin = require('gulp-imagemin'),
-    browserSync = require('browser-sync').create(),
-    rev = require('gulp-rev'),
-    postcss = require('gulp-postcss'),
-    autoprefixer = require('autoprefixer-core'),
-    clean = require('gulp-clean');
+    paths = require('./gulp-tasks/paths'),
+    sass = require('gulp-ruby-sass');
 
-
-/*---------- DECLARE PATHS ----------*/
-var paths = {
-    root: './app',
-    src: {
-        html: './app/*.html',
-        scss: 'sass/**/*.scss',
-        css: './app/css',
-        js: 'app/js/*.js',
-        fonts: 'app/fonts/**/*.*',
-        images: 'app/images/**/*.*'
-    },
-    build: {
-        src: './.tmp/build',
-        images: './.tmp/build/app/images'
-    }
-};
-
-
-/*---------- TASKS ----------*/
-
-// RUN PRODUCTION APPLICATION
-gulp.task('start-build-server', function (cb) {
-    logger.info('----> PRODUCTION APPLICATION RUNING FROM BUILD FOLDER <----');
-    browserSync.init({
-        port: 3011,
-        server: {
-            baseDir: paths.build.src + '/app',
-            index: 'index.html'
-        }
-    }, cb)
+['server', 'clean', 'fonts', 'sass', 'lint', 'minify'].forEach(function (tasks) {
+    require('./gulp-tasks/' + tasks)(gulp);
 });
-
-// MOVE FONTS
-gulp.task('fonts', ['clean'], function () {
-    gulp.src(paths.src.fonts, {base: './'})
-        .pipe(gulp.dest(paths.build.src))
-        .pipe(notify('---> FONTS MOVED SUCCESSFULLY TO BUILD'));
-});
-
-// Minify Images
-gulp.task('imagemin', ['clean'], function () {
-    return gulp.src(paths.src.images)
-        .pipe(imagemin({
-            optimizationLevel: 5,
-            progressive: true,
-            interlaced: true
-        }))
-        .pipe(gulp.dest(paths.build.images))
-        .pipe(notify('---> IMAGES MINIMISED SUCCESSFULLY <---'));
-});
-
-// START SERVER FOR DEVELOPMENT
-gulp.task('server', function (cb) {
-    logger.info('----> LOCAL SERVER STARTED AND RUNING...');
-    browserSync.init({
-        port: 3010,
-        server: {
-            baseDir: paths.root,
-            index: 'index.html'
-        }
-    }, cb);
-
-    gulp.watch(paths.src.scss, ['sass']).on('change', function (event) {
-        browserSync.reload({stream: true});
-        logger.info('---> File "' + event.path + '" was ' + event.type + ', running tasks...');
-    });
-    gulp.watch(paths.src.html).on('change', function (event) {
-        browserSync.reload();
-        logger.info('---> File "' + event.path + '" was ' + event.type + ', running tasks...');
-    });
-
-});
-
-// SASS COMPILER
-gulp.task('sass', ['clean'], function () {
-    return sass(paths.src.scss, {style: 'expanded'})
-        .on('error', sass.logError)
-        .pipe(postcss(
-            [
-                autoprefixer({
-                    browsers: ['> 0%', 'last 2 versions'],
-                    cascade: false
-                })
-            ]
-        ))
-        .pipe(gulp.dest(paths.src.css))
-        .pipe(browserSync.stream())
-        .pipe(notify('---> Complied SCSS Successfully. Output File: "' + paths.src.css + '/<%= file.relative %>"'))
-        .pipe(notify('---> CSS Output Style: EXPENDED'));
-});
-
-// JS LINT
-gulp.task('lint', function () {
-    return gulp.src(paths.src.js).pipe(jscs())
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
-        .pipe(notify('---> JSHINT Run Successfully. File Checked: "' + paths.root + '/js/<%= file.relative %>"'));
-});
-
-// CLEAN BUILD FOLDER
-gulp.task('clean', function (cb) {
-    logger.info('---> CLEANED BUILD FOLDER ".TEMP" SUCCESSFULLY -:) <---');
-    return gulp.src('./.tmp/', {read: false})
-        .pipe(clean(cb));
-});
-
-// USEMIN: CONCAT & MINIFY JS, CSS AND ADD REVISION TO AVOID CACHE
-gulp.task('mergeAndMinify', ['clean'], function () {
-    logger.info('---> UPDATE *.HTML APP ROOT' || 'BLANK');
-    return gulp.src(paths.src.html)
-        .pipe(usemin({
-            path: paths.root,
-            html: [function () {
-                return minifyHtml({empty: true});
-            }],
-            cssApp: [minifyCss, 'concat', rev],
-            cssVendor: [minifyCss, 'concat', rev],
-            jsVendor: [uglify, 'concat', rev],
-            jsApp: [uglify, rev]
-        }))
-        .pipe(gulp.dest(paths.build.src + '/app'))
-        .pipe(notify({message: '---> SUCCESSFULLY CREATED BUILD - "' + paths.build.src + '/app/<%= file.relative %>"'}));
-});
-
-/*---------- Environements Tasks ----------*/
 
 // Development tasks
-gulp.task('start-dev', ['server']);
+gulp.task('start-dev', ['server'], function(){
+    logger.info('----> LOCAL SERVER STARTED AND RUNING AT http://localhost:7071');
+});
 
 // Production tasks
-gulp.task('build', ['clean', 'mergeAndMinify', 'fonts', 'imagemin']);
+gulp.task('build', ['clean', 'mergeAndMinify', 'fonts', 'imagemin'], function () {
+    logger.info('---> SUCCESSFULLY CREATED BUILD AT:' + paths.build.src);
+});
 
 // Start Production app
-gulp.task('start-prod', ['start-build-server']);
+gulp.task('start-prod', ['server-prod'], function () {
+    logger.info('----> PRODUCTION APPLICATION RUNING FROM BUILD FOLDER <----');
+});

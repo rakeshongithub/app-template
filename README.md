@@ -4,7 +4,7 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 ##Install
 `npm install`
 
-`npm install -g gulp`
+`npm install -g gulp nodemon`
 
 ##How to install SASS
 ####Only for windows user mac user already have Ruby pre-installed
@@ -13,15 +13,15 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 
 
 ##Start App Locally
-`npm run startdev`
+`npm start`
 
 Once the gulp start run, you can access it on a browser by going to the web page [http://localhost:3010](http://localhost:3010)
 
-`npm run startdev` will take care of `sass to css` conversion and auto refresh the browser on every change in html and css file.
+`npm run startdev` will take care of `sass to css` compilation and auto refresh the browser on every change in html and css file.
 
 
 ##Gulp Commands
-`npm run startdev` - run application locally.
+`npm start` - run application locally.
 
 `npm run clean` - run to clean build folder.
 

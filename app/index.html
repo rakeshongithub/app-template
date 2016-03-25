@@ -54,16 +54,16 @@
 
             <h2>How to Install</h2>
             <p><code>npm install</code></p>
+            <p><code>npm install -g gulp nodemon</code></p>
 
 
             <h2>Start App Locally</h2>
-            <p><code>npm run start</code> or <code>npm run startdev</code></p>
-            <p>Once the gulp start run, you can access it on a browser by going to the web page <a href="http://localhost:3010">http://localhost:3010</a></p>
+            <p><code>npm start</code></p>
+            <p>Once the gulp start run, you can access it on a browser by going to the web page <a href="http://localhost:7071">http://localhost:7071</a></p>
             <p><code>npm run startdev</code> will take care of <code>sass to css</code> conversion and auto refresh the browser on every change in html and css file.</p>
 
 
-            <h2>Gulp Commands</h2>
-            <p><code>npm run startdev</code> - run application locally.</p>
+            <p><code>npm start</code> - run application locally.</p>
             <p></p>
             <p><code>npm run clean</code> - run <code>npm run build</code> to clean build folder.</p>
             <p></p>
@@ -80,6 +80,7 @@
 <script defer src="js/vendor/bootstrap.min.js"></script>
 <!-- endbuild -->
 <!-- build:jsApp js/custom.min.js -->
+<script src="js/namespace.js"></script>
 <script src="js/custom.js"></script>
 <!-- endbuild -->
 </body>

@@ -15,7 +15,7 @@ HTML template including [bootstrap](http://getbootstrap.com/), [sass](http://sas
 ##Start App Locally
 `npm start`
 
-Once the gulp start run, you can access it on a browser by going to the web page [http://localhost:3010](http://localhost:3010)
+Once the gulp start run, you can access it on a browser by going to the web page [http://localhost:7071](http://localhost:7071)
 
 `npm run startdev` will take care of `sass to css` compilation and auto refresh the browser on every change in html and css file.
 
